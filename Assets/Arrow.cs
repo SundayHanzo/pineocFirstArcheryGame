@@ -18,4 +18,12 @@ public class Arrow : MonoBehaviour {
 	void Update () {
 		//transform.Translate (direction * moveSpeed * Time.deltaTime);
 	}
+
+	//isCollideTrigger
+	void OnCollisionEnter(Collision collision) {
+		if (collision.collider.gameObject.tag == "box") {
+			print ("crushed!");
+			Destroy(GetComponent<Rigidbody>());
+		}
+	}
 }
