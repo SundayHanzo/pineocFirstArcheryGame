@@ -14,6 +14,7 @@
 
 using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(Collider))]
 public class Teleport : MonoBehaviour, IGvrGazeResponder {
@@ -36,7 +37,9 @@ public class Teleport : MonoBehaviour, IGvrGazeResponder {
   }
 
   public void Reset() {
-    transform.localPosition = startingPosition;
+    //transform.localPosition = startingPosition;
+	Scene scene = SceneManager.GetActiveScene();
+	SceneManager.LoadScene(scene.name);
   }
 
   public void ToggleVRMode() {
@@ -48,6 +51,12 @@ public class Teleport : MonoBehaviour, IGvrGazeResponder {
       !GvrViewer.Instance.DistortionCorrectionEnabled;
   }
 
+	void OnCollisionEnter () {
+		//set score
+		GameController.Instance.addScore(10);
+		TeleportRandomly ();
+	}
+
 #if !UNITY_HAS_GOOGLEVR || UNITY_EDITOR
   public void ToggleDirectRender() {
     GvrViewer.Controller.directRender = !GvrViewer.Controller.directRender;
@@ -56,8 +65,8 @@ public class Teleport : MonoBehaviour, IGvrGazeResponder {
 
   public void TeleportRandomly() {
     Vector3 direction = Random.onUnitSphere;
-    direction.y = Mathf.Clamp(direction.y, 0.5f, 1f);
-    float distance = 2 * Random.value + 1.5f;
+    direction.y = Mathf.Clamp(direction.y, 0.5f, 1.5f);
+    float distance = 2 * Random.value + 3.5f;
     transform.localPosition = direction * distance;
   }
 
