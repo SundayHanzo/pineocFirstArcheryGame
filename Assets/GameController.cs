@@ -15,7 +15,7 @@ public class GameController : MonoBehaviour {
 		get
 		{
 			if (_instance == null)
-				_instance = new GameController();
+				Debug.LogError ("gamecontroller null");
 			return _instance;
 		}
 	}

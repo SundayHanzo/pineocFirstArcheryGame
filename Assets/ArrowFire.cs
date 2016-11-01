@@ -4,7 +4,7 @@ using System.Collections;
 public class ArrowFire : MonoBehaviour {
 	public GameObject Quad_arrow = null;
 	public Transform ArrowLocation = null;
-	private float powerVal = 1.0f;
+	private float powerVal = 2.0f;
 
 	// Use this for initialization
 	void Start () {
@@ -16,7 +16,7 @@ public class ArrowFire : MonoBehaviour {
 	void Update () {
 		if ((Input.touchCount > 0) || Input.GetKey (KeyCode.Space) == true) {
 			//touch down started
-			if(powerVal < 10.0f)
+			if(powerVal < 6.0f)
 				powerVal += 0.1f;
 		}
 		if ((Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended) || 
@@ -27,7 +27,7 @@ public class ArrowFire : MonoBehaviour {
 			//arrow object set, addforce
 			GameObject arrowObj = Instantiate (Quad_arrow, ArrowLocation.position, ArrowLocation.rotation) as GameObject;
 			arrowObj.GetComponent<Rigidbody> ().AddForce (Camera.main.transform.forward * 500 * powerVal);
-			powerVal = 1.0f;
+			powerVal = 2.0f;
 		}
 	}
 }
