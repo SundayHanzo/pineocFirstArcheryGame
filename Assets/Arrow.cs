@@ -3,6 +3,7 @@ using System.Collections;
 
 public class Arrow : MonoBehaviour {
 	public int moveSpeed;
+	public GameObject ruinsParticle;
 	private Vector3 direction;
 
 	// Use this for initialization
@@ -20,6 +21,8 @@ public class Arrow : MonoBehaviour {
 		if (collision.collider.gameObject.tag == "box") {
 			//print ("crushed!");
 			Destroy (GetComponent<Rigidbody> ());
+			//show particle
+			Instantiate(ruinsParticle, collision.transform.position, this.gameObject.transform.rotation);
 			Destroy (this.gameObject, 7);
 		} else if (collision.collider.gameObject.tag == "target") {
 			Destroy (this.gameObject);

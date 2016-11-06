@@ -4,8 +4,11 @@ using System.Collections;
 public class ArrowFire : MonoBehaviour {
 	public GameObject Quad_arrow = null;
 	public Transform ArrowLocation = null;
-	private float powerVal = 2.0f;
+	private float powerVal = 2.1f;
+	private const float minPowerVal = 1.0f;
+	private const float maxPowerVal = 4.1f;
 	private const float fireRate = 0.5f;
+	private const float fireYVal = 0.045f;
 	private float nextFire = 0.0f;
 
 	// Use this for initialization
@@ -18,7 +21,7 @@ public class ArrowFire : MonoBehaviour {
 	void Update () {
 		if ((Input.touchCount > 0) || Input.GetKey (KeyCode.Space) == true) {
 			//touch down started
-			if(powerVal < 6.0f && Time.time > nextFire)
+			if(powerVal < maxPowerVal && Time.time > nextFire)
 				powerVal += 0.1f;
 		}
 		if ((Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended) || 
@@ -29,9 +32,9 @@ public class ArrowFire : MonoBehaviour {
 				nextFire = Time.time + fireRate;
 				GameObject arrowObj = Instantiate (Quad_arrow, ArrowLocation.position, ArrowLocation.rotation) as GameObject;
 				Vector3 t = Camera.main.transform.forward;
-				t.y += 0.05f;
+				t.y += fireYVal;
 				arrowObj.GetComponent<Rigidbody> ().AddForce (t * 500 * powerVal);
-				powerVal = 2.0f;
+				powerVal = minPowerVal;
 			}
 		}
 	}
