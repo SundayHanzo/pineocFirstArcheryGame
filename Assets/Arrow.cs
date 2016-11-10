@@ -22,8 +22,12 @@ public class Arrow : MonoBehaviour {
 			//print ("crushed!");
 			Destroy (GetComponent<Rigidbody> ());
 			//show particle
-			Instantiate(ruinsParticle, collision.transform.position, this.gameObject.transform.rotation);
+			ContactPoint contact = collision.contacts[0];
+			Quaternion rot = Quaternion.FromToRotation(Vector3.up, contact.normal);
+			Vector3 pos = contact.point;
+			GameObject particle = (GameObject)Instantiate(ruinsParticle, pos, rot);
 			Destroy (this.gameObject, 7);
+			Destroy (particle, 2);
 		} else if (collision.collider.gameObject.tag == "target") {
 			Destroy (this.gameObject);
 		}
