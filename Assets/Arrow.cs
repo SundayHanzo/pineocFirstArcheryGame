@@ -29,6 +29,8 @@ public class Arrow : MonoBehaviour {
 			Destroy (particle, 1);
 		} else if (collision.collider.gameObject.tag == "target") {
 			//some action here
+			//Show hit marker
+			GameController.Instance.showHitMarker();
 		}
 		Destroy (this.gameObject);
 	}

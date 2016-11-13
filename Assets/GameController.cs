@@ -10,7 +10,7 @@ public class GameController : MonoBehaviour {
 	private const float minPowerVal = 1.3f;
 	private const float maxPowerVal = 4.1f;
 	private bool isAiming = false;
-	public Text score_text;
+	public GameObject Quad_hitmarker;
 
 	private static GameController _instance = null;
 
@@ -83,5 +83,19 @@ public class GameController : MonoBehaviour {
 	}
 	public bool getIsAiming() {
 		return isAiming;
+	}
+	public void showHitMarker(){
+		//GameObject oHitMarker = (GameObject)Instantiate(Quad_hitmarker, new Vector3 (-0.01f, 0, 0), Quaternion.identity);
+		//oHitMarker.transform.SetParent(Camera.main.GetComponent<Transform> ().GetChild(3), true);
+		//oHitMarker.transform.position = new Vector3 (-0.01f, 0, 0);
+		Quad_hitmarker.GetComponent<SpriteRenderer>().enabled = true;
+		print (Quad_hitmarker.transform.position);
+		StartCoroutine (hideHitMarker(0.1f));
+	}
+	private IEnumerator hideHitMarker(float time)
+	{
+		yield return new WaitForSeconds(time);
+		// Code to execute after the delay
+		Quad_hitmarker.GetComponent<SpriteRenderer>().enabled=false;
 	}
 }
