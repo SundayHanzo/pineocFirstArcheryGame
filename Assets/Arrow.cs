@@ -8,7 +8,7 @@ public class Arrow : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		
+		Destroy (this.gameObject, 10);
 	}
 	
 	// Update is called once per frame
@@ -26,10 +26,10 @@ public class Arrow : MonoBehaviour {
 			Quaternion rot = Quaternion.FromToRotation(Vector3.up, contact.normal);
 			Vector3 pos = contact.point;
 			GameObject particle = (GameObject)Instantiate(ruinsParticle, pos, rot);
-			Destroy (this.gameObject, 7);
-			Destroy (particle, 2);
+			Destroy (particle, 1);
 		} else if (collision.collider.gameObject.tag == "target") {
-			Destroy (this.gameObject);
+			//some action here
 		}
+		Destroy (this.gameObject);
 	}
 }

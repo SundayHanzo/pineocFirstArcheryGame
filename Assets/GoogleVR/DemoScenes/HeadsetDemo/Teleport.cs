@@ -18,10 +18,8 @@ using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(Collider))]
 public class Teleport : MonoBehaviour, IGvrGazeResponder {
-  private Vector3 startingPosition;
 
   void Start() {
-    startingPosition = transform.localPosition;
     SetGazedAt(false);
   }
 
@@ -66,7 +64,7 @@ public class Teleport : MonoBehaviour, IGvrGazeResponder {
   public void TeleportRandomly() {
     Vector3 direction = Random.onUnitSphere;
     direction.y = Mathf.Clamp(direction.y, 0.5f, 1.5f);
-    float distance = 2 * Random.value + 3.5f;
+    float distance = 5 * Random.value + 3.5f;
     transform.localPosition = direction * distance;
   }
 
