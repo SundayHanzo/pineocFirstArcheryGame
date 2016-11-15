@@ -90,7 +90,7 @@ public class GameController : MonoBehaviour {
 		//oHitMarker.transform.position = new Vector3 (-0.01f, 0, 0);
 		Quad_hitmarker.GetComponent<SpriteRenderer>().enabled = true;
 		print (Quad_hitmarker.transform.position);
-		StartCoroutine (hideHitMarker(0.1f));
+		StartCoroutine (hideHitMarker(0.05f));
 	}
 	private IEnumerator hideHitMarker(float time)
 	{
