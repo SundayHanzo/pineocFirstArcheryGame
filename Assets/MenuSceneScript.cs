@@ -13,6 +13,6 @@ public class MenuSceneScript : MonoBehaviour {
 	
 	}
 	public void GotoGameScene(){
-		SceneManager.LoadScene ("demoScene");
+		SceneManager.LoadScene ("GameScene");
 	}
 }
