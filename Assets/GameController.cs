@@ -11,6 +11,8 @@ public class GameController : MonoBehaviour {
 	private const float maxPowerVal = 4.1f;
 	private bool isAiming = false;
 	public GameObject Quad_hitmarker;
+	public GameObject ScoreCanvas;
+	public GameObject ElimText;
 
 	private static GameController _instance = null;
 
@@ -97,5 +99,14 @@ public class GameController : MonoBehaviour {
 		yield return new WaitForSeconds(time);
 		// Code to execute after the delay
 		Quad_hitmarker.GetComponent<SpriteRenderer>().enabled=false;
+	}
+
+	//add elim log text
+	public void AddElimLog(){
+		GameObject log = Instantiate (ElimText);
+		log.transform.SetParent (ScoreCanvas.GetComponent<Transform> (), true);
+		log.transform.localScale = new Vector3 (1, 1, 1);
+		log.transform.localPosition = new Vector3 (45, -30, 10);
+		Destroy (log, 0.7);
 	}
 }

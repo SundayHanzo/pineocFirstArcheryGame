@@ -31,6 +31,7 @@ public class Arrow : MonoBehaviour {
 			//some action here
 			//Show hit marker
 			GameController.Instance.showHitMarker();
+			GameController.Instance.AddElimLog ();
 		}
 		Destroy (this.gameObject);
 	}
