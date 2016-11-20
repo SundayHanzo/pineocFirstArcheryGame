@@ -25,8 +25,8 @@ public class Arrow : MonoBehaviour {
 			ContactPoint contact = collision.contacts[0];
 			Quaternion rot = Quaternion.FromToRotation(Vector3.up, contact.normal);
 			Vector3 pos = contact.point;
-			GameObject particle = (GameObject)Instantiate(ruinsParticle, pos, rot);
-			Destroy (particle, 1);
+			//show particle
+			ShowCollisionParticle (pos, rot);
 		} else if (collision.collider.gameObject.tag == "target") {
 			//some action here
 			//Show hit marker
@@ -34,5 +34,9 @@ public class Arrow : MonoBehaviour {
 			GameController.Instance.AddElimLog ();
 		}
 		Destroy (this.gameObject);
+	}
+	void ShowCollisionParticle(Vector3 pos, Quaternion rot){
+		GameObject particle = (GameObject)Instantiate(ruinsParticle, pos, rot);
+		Destroy (particle, 1);
 	}
 }

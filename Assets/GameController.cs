@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour {
 
@@ -33,6 +34,18 @@ public class GameController : MonoBehaviour {
 
 	void Awake () {
 		_instance = this;
+	}
+
+	void Update() {
+		if (Application.platform == RuntimePlatform.Android) {
+			if (Input.GetKey (KeyCode.Escape)) {
+				GoMainMenuScene ();
+			}
+		} else {
+			if (Input.GetKeyDown(KeyCode.Escape)) {
+				GoMainMenuScene ();
+			}
+		}
 	}
 
 	//score get,set
@@ -123,5 +136,10 @@ public class GameController : MonoBehaviour {
 			System.IO.File.Copy (Origin_Path, Path2);
 			print ("no original path");
 		}
+	}
+
+	//Scene manager
+	public void GoMainMenuScene(){
+		SceneManager.LoadScene("StartScene");
 	}
 }

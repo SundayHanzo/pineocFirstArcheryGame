@@ -14,7 +14,11 @@ public class MenuSceneScript : MonoBehaviour {
 		{
 			if(Input.GetKey(KeyCode.Escape))
 			{
-				HidePopup ();
+				if (PopupCanvas.GetComponent<Canvas> ().enabled)
+					HidePopup ();
+				else {
+					Application.Quit();
+				}
 			}
 		}
 	}
