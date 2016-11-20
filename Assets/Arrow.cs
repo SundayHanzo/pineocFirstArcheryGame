@@ -32,6 +32,9 @@ public class Arrow : MonoBehaviour {
 			//Show hit marker
 			GameController.Instance.showHitMarker();
 			GameController.Instance.AddElimLog ();
+			//play sound
+			AudioSource audio = GetComponent<AudioSource>();
+			audio.Play();
 		}
 		Destroy (this.gameObject);
 	}
