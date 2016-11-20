@@ -43,9 +43,6 @@ public class ArrowFire : MonoBehaviour {
 				Vector3 t = Camera.main.transform.forward;
 				t.y += fireYVal;
 				arrowObj.GetComponent<Rigidbody> ().AddForce (t * 500 * powerVal);
-				//play sound of arrow fire
-				AudioSource audio = GetComponent<AudioSource>();
-				audio.Play();
 				//reset power value
 				powerVal = minPowerVal;
 				GameController.Instance.setPower (powerVal); //set power on gameController

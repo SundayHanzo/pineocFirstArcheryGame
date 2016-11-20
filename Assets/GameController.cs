@@ -104,7 +104,6 @@ public class GameController : MonoBehaviour {
 		//oHitMarker.transform.SetParent(Camera.main.GetComponent<Transform> ().GetChild(3), true);
 		//oHitMarker.transform.position = new Vector3 (-0.01f, 0, 0);
 		Quad_hitmarker.GetComponent<SpriteRenderer>().enabled = true;
-		print (Quad_hitmarker.transform.position);
 		StartCoroutine (hideHitMarker(0.05f));
 	}
 	private IEnumerator hideHitMarker(float time)

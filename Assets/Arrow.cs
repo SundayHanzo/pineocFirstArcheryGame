@@ -33,8 +33,8 @@ public class Arrow : MonoBehaviour {
 			GameController.Instance.showHitMarker();
 			GameController.Instance.AddElimLog ();
 			//play sound
-			AudioSource audio = GetComponent<AudioSource>();
-			audio.Play();
+			AudioSource[] audio = GetComponents<AudioSource>();
+			audio[0].Play();
 		}
 		Destroy (this.gameObject);
 	}
