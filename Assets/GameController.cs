@@ -14,6 +14,7 @@ public class GameController : MonoBehaviour {
 	public GameObject Quad_hitmarker;
 	public GameObject ScoreCanvas;
 	public GameObject ElimText;
+	public GameObject TargetObject;
 
 	private static GameController _instance = null;
 
@@ -114,27 +115,14 @@ public class GameController : MonoBehaviour {
 	}
 
 	//add elim log text
-	public void AddElimLog(){
+	public void AddElimLog(string s){
 		GameObject log = Instantiate (ElimText);
+		log.GetComponent<Text> ().text += s;
 		log.transform.SetParent (ScoreCanvas.GetComponent<Transform> (), true);
 		log.transform.localScale = new Vector3 (0.5f, 0.5f, 1);
 		log.transform.localPosition = new Vector3 (30.3f, -28, 10);
 		log.transform.localRotation = new Quaternion ();
 		Destroy (log, 0.7f);
-	}
-	public void capture(){
-		string Screen_Shot_File_Name = "Screenshot__a" + System.DateTime.Now.ToString("__yyyy-MM-dd") + ".png";
-		Application.CaptureScreenshot(Screen_Shot_File_Name);
-		string Origin_Path = System.IO.Path.Combine(Application.persistentDataPath, Screen_Shot_File_Name);
-		// This is the path of my folder.
-		string Path = "/mnt/sdcard/DCIM/Camera/" + Screen_Shot_File_Name;
-		string Path2 = "/storage/emulated/0/DCIM/" + Screen_Shot_File_Name;
-		if(System.IO.File.Exists (Origin_Path))
-		{
-			System.IO.File.Move (Origin_Path, Path);
-			System.IO.File.Copy (Origin_Path, Path2);
-			print ("no original path");
-		}
 	}
 
 	//Scene manager
