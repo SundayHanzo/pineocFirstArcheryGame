@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[RequireComponent(typeof(AudioSource))]
 public class TargetController : MonoBehaviour {
 	public GameObject ruinsParticle;
 	// Use this for initialization
@@ -20,8 +21,6 @@ public class TargetController : MonoBehaviour {
 		transform.LookAt (Camera.main.transform);
 	}
 	void OnCollisionEnter (Collision collision) {
-		//set score
-		//GameController.Instance.addScore(10);
 		//show particle
 		ContactPoint contact = collision.contacts[0];
 		Quaternion rot = Quaternion.FromToRotation(Vector3.up, contact.normal);
@@ -31,7 +30,7 @@ public class TargetController : MonoBehaviour {
 		ShowCollisionParticle (pos, rot);
 		//targetRegen
 		TargetRegen();
-		Destroy (this.gameObject);
+		//Destroy (this.gameObject);
 	}
 	void ShowCollisionParticle(Vector3 pos, Quaternion rot){
 		GameObject particle = (GameObject)Instantiate(ruinsParticle, pos, rot);

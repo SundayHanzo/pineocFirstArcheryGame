@@ -9,6 +9,7 @@ public class ArrowFire : MonoBehaviour {
 	private const float maxPowerVal = 4.1f;
 	private const float fireRate = 0.5f;
 	private const float fireYVal = 0.045f;
+	private const float firePowerAddVal = 0.1f;
 	private float nextFire = 0.0f;
 	private GameObject showArrow;
 	private Vector3 showArrowInitPos;
@@ -25,7 +26,7 @@ public class ArrowFire : MonoBehaviour {
 		if ((Input.touchCount > 0) || Input.GetKey (KeyCode.Space) == true) {
 			//touch down started
 			if(powerVal < maxPowerVal && Time.time > nextFire)
-				powerVal += 0.1f;
+				powerVal += firePowerAddVal;
 			GameController.Instance.setPower (powerVal); //set power on gameController
 			GameController.Instance.setIsAiming (true); //set isAiming true
 			//set Arrow to back
