@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-[RequireComponent(typeof(AudioSource))]
 public class TargetController : MonoBehaviour {
 	public GameObject ruinsParticle;
 	// Use this for initialization
